@@ -198,7 +198,12 @@ function findEmoji(message){
 
 	}
 }
-
+function deleteMessage(chat_id,msg_id)
+{
+	bot.deleteMessage(chat_id,msg_id).then((resp)=>{
+		console.log(resp);
+	});
+}
 
 bot.onText(/\/reset/,(msg,match)=>{
 	claims = {};
@@ -235,7 +240,12 @@ bot.onText(/\/claim/,(msg,match)=>{
 			claim_message = claim_message.concat("*",key,"*"," claims ",text,emoji,"\n");
 		}
 		console.log(claim_message)
-		bot.sendMessage(chatId,claim_message,options);
+		bot.sendMessage(chatId,claim_message,options).then((msg)=>{
+			// console.log(msg);
+			msg_id = msg.message_id;
+			setTimeout(deleteMessage,30000,chatId,msg_id)
+		});
+		console.log(M.message_id);
 		console.log(claims)
 		// bot.sendMessage(chatId, claims);
 	}
