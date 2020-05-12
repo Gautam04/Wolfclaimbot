@@ -242,7 +242,12 @@ bot.onText(/\/claim/,(msg,match)=>{
 	const chatId = msg.chat.id;
 	options = {parse_mode: 'Markdown'};
 	if(Object.keys(claims).length === 0)
-		bot.sendMessage(chatId,"No claims yet");
+	{
+		bot.sendMessage(chatId,"No claims yet").then((msg)=>{
+		var msg_id = msg.message_id;
+		setTimeout(deleteMessage,10000,chatId,msg_id)
+	}); 
+	}
 	else
 	{		
 		var claim_message = ""
