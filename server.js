@@ -219,7 +219,10 @@ function deleteMessage(chat_id,msg_id)
 bot.onText(/\/reset/,(msg,match)=>{
 	claims = {};
 	const chatId = msg.chat.id;
-	bot.sendMessage(chatId,"Claims have been reset"); 
+	bot.sendMessage(chatId,"Claims have been reset").then((msg)=>{
+		var msg_id = msg.message_id;
+		setTimeout(deleteMessage,10000,chatId,msg_id)
+	}); 
 });
 
 bot.onText(/\/claim (.+)?/, (msg, match) => {
@@ -253,7 +256,7 @@ bot.onText(/\/claim/,(msg,match)=>{
 		console.log(claim_message)
 		bot.sendMessage(chatId,claim_message,options).then((msg)=>{
 			// console.log(msg);
-			msg_id = msg.message_id;
+			var msg_id = msg.message_id;
 			setTimeout(deleteMessage,30000,chatId,msg_id)
 		});
 		console.log(M.message_id);
