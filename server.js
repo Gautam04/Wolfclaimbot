@@ -205,7 +205,6 @@ bot.onText(/\/reset/,(msg,match)=>{
 	claims = {};
 	const chatId = msg.chat.id;
 	bot.sendMessage(chatId,"Claims have been reset"); 
-	bot.sendMessage(chatId,"\u{1F473}"); 
 });
 
 bot.onText(/\/claim (.+)?/, (msg, match) => {
