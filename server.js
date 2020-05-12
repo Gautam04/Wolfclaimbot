@@ -217,7 +217,7 @@ bot.onText(/\/claim (.+)?/, (msg, match) => {
   const resp = match[1]; 
   
   sender = msg.from.first_name;
-  console.log(sender)
+  // console.log(sender)
   // claims=claims.concat(sender," claims ",resp,"\n");
   claims[sender]=resp
   // bot.sendMessage(chatId,claims);
@@ -236,7 +236,7 @@ bot.onText(/\/claim/,(msg,match)=>{
 		{
 			var text = claims[key];
 			var emoji = findEmoji(text);
-			console.log(key);
+			// console.log(key);
 			claim_message = claim_message.concat("*",key,"*"," claims ",text,emoji,"\n");
 		}
 		console.log(claim_message)
@@ -246,7 +246,7 @@ bot.onText(/\/claim/,(msg,match)=>{
 			setTimeout(deleteMessage,30000,chatId,msg_id)
 		});
 		console.log(M.message_id);
-		console.log(claims)
+		// console.log(claims)
 		// bot.sendMessage(chatId, claims);
 	}
 });
