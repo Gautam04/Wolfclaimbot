@@ -29,6 +29,7 @@ function findEmoji(message){
 			return "\u{1F441}";
 		break;
 		case "gunner":
+		case "arsenal":
 			return "\u{1F52B}";
 		break;
 		case "ga":
@@ -55,6 +56,7 @@ function findEmoji(message){
 			return "\u{1F482}";
 		break;
 		case "cupid":
+		case "maama":
 			return "\u{1F3F9}";
 		break;
 		case "hunter": 
