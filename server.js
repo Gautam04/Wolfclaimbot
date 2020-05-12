@@ -21,6 +21,7 @@ function findEmoji(message){
 			return "\u{1F473}";
 		break;
 		case "harlot":
+		case "whore":
 			return "\u{1F48B}";
 		break;
 		case "bh": 
@@ -65,6 +66,8 @@ function findEmoji(message){
 			return "\u{1F915}";
 		break;
 		case "blacksmith":
+		case "nigga smith":
+		case "will smith":
 			return "\u{2692}";
 		break;
 		case "prince":
@@ -147,6 +150,7 @@ function findEmoji(message){
 		break;
 		case "paci":
 		case "pacifist":
+		case "malala":
 			return "\u{262E}";
 		break;
 		case "wise elder":
@@ -177,6 +181,7 @@ function findEmoji(message){
 		case "storm":
 		case "stormbringer":
 		case "stormnigga":
+		case "weather wizard":
 			return "\u{1F329}";
 		break;
 		case "traitor":
