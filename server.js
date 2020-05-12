@@ -207,8 +207,14 @@ function deleteMessage(chat_id,msg_id)
 {
 	bot.deleteMessage(chat_id,msg_id).then((resp)=>{
 		console.log(resp);
-	});
+	}).catch((error) => {
+  console.log(error.code);  // => 'ETELEGRAM'
+  console.log(error.response.body); 
+});
+
 }
+
+
 
 bot.onText(/\/reset/,(msg,match)=>{
 	claims = {};
@@ -256,4 +262,6 @@ bot.onText(/\/claim/,(msg,match)=>{
 	}
 });
 
-
+bot.on('polling_error', (error) => {
+  console.log(error.code);  // => 'EFATAL'
+});
