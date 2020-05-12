@@ -219,8 +219,8 @@ function deleteMessage(chat_id,msg_id)
 
 
 bot.onText(/\/reset/,(msg,match)=>{
-	claims = {};
 	const chatId = msg.chat.id;
+	claims[chatId] = {};
 	bot.sendMessage(chatId,"Claims have been reset").then((msg)=>{
 		var msg_id = msg.message_id;
 		setTimeout(deleteMessage,10000,chatId,msg_id)
@@ -235,7 +235,8 @@ bot.onText(/\/claim (.+)?/, (msg, match) => {
   sender = msg.from.first_name;
   // console.log(sender)
   // claims=claims.concat(sender," claims ",resp,"\n");
-  claims[sender]=resp
+  claims[chatId][sender]=resp
+  console.log(claims)
   // bot.sendMessage(chatId,claims);
   
 });
@@ -243,7 +244,7 @@ bot.onText(/\/claim (.+)?/, (msg, match) => {
 bot.onText(/\/claim/,(msg,match)=>{
 	const chatId = msg.chat.id;
 	options = {parse_mode: 'Markdown'};
-	if(Object.keys(claims).length === 0)
+	if(Object.keys(claims[chatId]).length === 0)
 	{
 		bot.sendMessage(chatId,"No claims yet").then((msg)=>{
 		var msg_id = msg.message_id;
@@ -253,14 +254,18 @@ bot.onText(/\/claim/,(msg,match)=>{
 	else
 	{		
 		var claim_message = ""
-		for(key in claims)
+		// console.log(claims[chatId]);
+		var obj = claims[chatId]
+		for(key in obj)
 		{
-			var text = claims[key];
+			var text = obj[key];
 			var emoji = findEmoji(text);
 			// console.log(key);
 			claim_message = claim_message.concat("*",key,"*"," claims ",text,emoji,"\n");
+			console.log(claim_message)
+
 		}
-		console.log(claim_message)
+		// console.log(claim_message)
 		bot.sendMessage(chatId,claim_message,options).then((msg)=>{
 			// console.log(msg);
 			var msg_id = msg.message_id;
